@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scuolabus — Tutto quello che devi sapere</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        header {
+            background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .bus-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        nav {
+            background: #1565c0;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        section h2 {
+            color: #1a73e8;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .info-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #1a73e8;
+        }
+        .info-card h3 {
+            color: #0d47a1;
+            margin-bottom: 0.5rem;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-item p {
+            padding: 1rem;
+            background: white;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .safety-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        .safety-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .safety-list li:last-child {
+            border-bottom: none;
+        }
+        .safety-icon {
+            font-size: 1.5rem;
+        }
+        footer {
+            background: #1a73e8;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+        }
+        footer p {
+            opacity: 0.9;
+        }
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="bus-icon">🚌</div>
+        <h1>Scuolabus</h1>
+        <p>Tutto quello che devi sapere sul trasporto scolastico</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#info">Info Generali</a></li>
+            <li><a href="#orari">Orari e Percorsi</a></li>
+            <li><a href="#sicurezza">Sicurezza</a></li>
+            <li><a href="#galleria">Galleria</a></li>
+            <li><a href="#contatti">Contatti</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="info">
+            <h2>📋 Informazioni Generali</h2>
+            <p>Il servizio di scuolabus è un trasporto pubblico dedicato agli studenti delle scuole primarie e secondarie. Offre un mezzo sicuro e controllato per il tragitto casa-scuola e viceversa.</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🎒 Chi può usarlo</h3>
+                    <p>Alunni iscritti alle scuole dell'obbligo che risiedono a distanze superiori ai 3 km dall'istituto scolastico.</p>
+                </div>
+                <div class="info-card">
+                    <h3>📝 Come iscriversi</h3>
+                    <p>La domanda va presentata annualmente tramite il portale della scuola o direttamente al comune di residenza.</p>
+                </div>
+                <div class="info-card">
+                    <h3>💰 Costi</h3>
+                    <p>Il servizio è generalmente gratuito per chi rientra nei criteri di distanza. Contributi volontari richiesti per servizi aggiuntivi.</p>
+                </div>
+                <div class="info-card">
+                    <h3>🚌 Tipo di veicoli</h3>
+                    <p>Autobus gialli omologati per il trasporto scolastico, con massimo 50 posti, dotati di sistemi di sicurezza avanzati.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="orari">
+            <h2>🕐 Orari e Percorsi</h2>
+            <p> Gli orari possono variare in base alla zona di residenza e all'anno scolastico. Consulta sempre le comunicazioni ufficiali della scuola o del comune.</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>⏰ Mattina</h3>
+                    <p><strong>Partenza:</strong> ore 7:30 circa (varia per zona)<br>
+                    <strong>Arrivo a scuola:</strong> ore 8:30 circa</p>
+                </div>
+                <div class="info-card">
+                    <h3>⏰ Pomeriggio</h3>
+                    <p><strong>Uscita da scuola:</strong> ore 16:00 circa<br>
+                    <strong>Arrivo a casa:</strong> ore 16:30-17:00 circa</p>
+                </div>
+                <div class="info-card">
+                    <h3>🗺️ Percorsi</h3>
+                    <p>I percorsi sono ottimizzati per coprire tutte le zone servite con il minor tempo di percorrenza possibile. Fermate predisposte ogni 300-500 metri.</p>
+                </div>
+                <div class="info-card">
+                    <h3>⚠️ Ritardi</h3>
+                    <p>In caso di ritardi per traffico o maltempo, le famiglie vengono avvisate tramite SMS o app dedicata.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="sicurezza">
+            <h2>🛡️ Sicurezza a Bordo</h2>
+            <p>La sicurezza dei bambini è la priorità numero uno. Ecco tutte le misure in atto:</p>
+            <ul class="safety-list">
+                <li><span class="safety-icon">👨‍✈️</span> <strong>Accompagnatore a bordo</strong> — Un adulto oltre all'autista supervisiona il comportamento e assiste i bambini.</li>
+                <li><span class="safety-icon">🎯</span> <strong>Cintura di sicurezza</strong> — Obbligatorie per tutti i passeggeri, vengono controllate alla partenza.</li>
+                <li><span class="safety-icon">🚨</span> <strong>Kit di primo soccorso</strong> — Presente a bordo in caso di emergenze mediche lievi.</li>
+                <li><span class="safety-icon">🔥</span> <strong>Estintore</strong> — Estintore a CO2 sempre presente e controllato periodicamente.</li>
+                <li><span class="safety-icon">📹</span> <strong>Videoregistrazione</strong> — Tutti i mezzi sono dotati di sistemi di videosorveglianza.</li>
+                <li><span class="safety-icon">🔒</span> <strong>Porta bloccata in marcia</strong> — Le porte rimangono chiuse durante il tragitto.</li>
+                <li><span class="safety-icon">👶</span> <strong>Seggiolini</strong> — Per i bambini più piccoli della scuola dell'infanzia, seggiolini omologati.</li>
+            </ul>
+        </section>
+
+        <section id="galleria">
+            <h2>📷 Galleria</h2>
+            <p>Immagini dei nostri scuolabus in servizio. Tutte le foto sono scattate durante normali giornate di attività.</p>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&h=400&fit=crop" alt="Scuolabus moderno giallo">
+                    <p>Flotta moderna con aria condizionata</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop" alt="Interno scuolabus">
+                    <p>Interni spaziosi e confortevoli</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=600&h=400&fit=crop" alt="Autobus scolastico">
+                    <p>Servizio in ogni condizione meteo</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contatti">
+            <h2>📞 Contatti</h2>
+            <p>Per qualsiasi informazione o segnalazione, contatta gli uffici preposti:</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>📧 Email</h3>
+                    <p>scuolabus@comune.it</p>
+                </div>
+                <div class="info-card">
+                    <h3>📱 Telefono</h3>
+                    <p>Centralino: 02-XXXXXXX<br>Ufficio trasporti: 02-YYYYYYY</p>
+                </div>
+                <div class="info-card">
+                    <h3>🕐 Orari Ufficio</h3>
+                    <p>Lun-Ven: 8:30 - 16:30<br>Sab: 8:30 - 12:30</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 — Servizio Scuolabus</p>
+        <p>Un servizio del Comune per le famiglie</p>
+    </footer>
+</body>
+</html>

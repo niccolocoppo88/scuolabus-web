@@ -141,12 +141,54 @@
         footer p {
             opacity: 0.9;
         }
+        /* Swipe navigation */
+        .swipe-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(26, 115, 232, 0.9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .swipe-indicator.visible {
+            opacity: 1;
+        }
+        .section-nav {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .section-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .section-dot.active {
+            background: #1a73e8;
+        }
         @media (max-width: 600px) {
             header h1 {
                 font-size: 1.8rem;
             }
             section {
                 padding: 1.5rem;
+            }
+            .swipe-indicator {
+                opacity: 1;
+                font-size: 0.75rem;
+                bottom: 15px;
             }
         }
     </style>
@@ -270,6 +312,95 @@
         </section>
     </main>
 
+    <div class='swipe-indicator' id='swipeIndicator'>← Swipe per navigare →</div>
+    <script>
+    (function() {
+        const sections = document.querySelectorAll('section');
+        const indicator = document.getElementById('swipeIndicator');
+        let currentSection = 0;
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const minSwipeDistance = 50;
+
+        // Add navigation dots
+        sections.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.className = 'section-dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => scrollToSection(i);
+            document.querySelector('main').appendChild(document.createElement('div')).className = 'section-nav';
+        });
+
+        // Move dots inside first section for visibility
+        const navDiv = document.createElement('div');
+        navDiv.className = 'section-nav';
+        navDiv.style.marginTop = '1.5rem';
+        sections[0].appendChild(navDiv);
+        const dotsContainer = navDiv;
+        sections.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.className = 'section-dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => scrollToSection(i);
+            dotsContainer.appendChild(dot);
+        });
+
+        function scrollToSection(index) {
+            if (index < 0 || index >= sections.length) return;
+            currentSection = index;
+            sections[index].scrollIntoView({ behavior: 'smooth' });
+            updateDots();
+        }
+
+        function updateDots() {
+            document.querySelectorAll('.section-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSection);
+            });
+        }
+
+        // Intersection Observer for section tracking
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const idx = Array.from(sections).indexOf(entry.target);
+                    if (idx !== -1) {
+                        currentSection = idx;
+                        updateDots();
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        sections.forEach(s => observer.observe(s));
+
+        // Touch handlers for swipe
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const distance = touchEndX - touchStartX;
+            if (Math.abs(distance) < minSwipeDistance) return;
+
+            if (distance > 0) {
+                // Swipe right - previous
+                scrollToSection(currentSection - 1);
+            } else {
+                // Swipe left - next
+                scrollToSection(currentSection + 1);
+            }
+        }
+
+        // Show indicator briefly on load
+        setTimeout(() => {
+            indicator.classList.add('visible');
+            setTimeout(() => indicator.classList.remove('visible'), 3000);
+        }, 1000);
+    })();
+    </script>
     <footer>
         <p>© 2026 — Servizio Scuolabus</p>
         <p>Un servizio del Comune per le famiglie</p>
